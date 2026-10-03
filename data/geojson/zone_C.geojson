@@ -1,0 +1,35 @@
+{
+  "type": "Feature",
+  "properties": {
+    "zone_name": "C",
+    "orchard": "Vidarbha Orange Estate",
+    "area_acres": 6.25
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          79.08846,
+          21.141525
+        ],
+        [
+          79.09314,
+          21.141525
+        ],
+        [
+          79.09314,
+          21.145575
+        ],
+        [
+          79.08846,
+          21.145575
+        ],
+        [
+          79.08846,
+          21.141525
+        ]
+      ]
+    ]
+  }
+}

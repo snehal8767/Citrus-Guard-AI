@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vidarbha Orange Estate",
+        "area_acres": 50.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              79.07806,
+              21.141525
+            ],
+            [
+              79.09834000000001,
+              21.141525
+            ],
+            [
+              79.09834000000001,
+              21.150075
+            ],
+            [
+              79.07806,
+              21.150075
+            ],
+            [
+              79.07806,
+              21.141525
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
