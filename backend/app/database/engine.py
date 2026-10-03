@@ -18,6 +18,17 @@ if db_url.startswith("sqlite:///"):
 connect_args = {"check_same_thread": False} if db_url.startswith("sqlite") else {}
 engine = create_engine(db_url, connect_args=connect_args, future=True)
 
+if db_url.startswith("sqlite"):
+    # SQLite disables foreign-key enforcement by default; turn it on so
+    # ondelete="CASCADE" relationships actually cascade.
+    from sqlalchemy import event
+
+    @event.listens_for(engine, "connect")
+    def _enable_sqlite_fk(dbapi_connection, _):
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
+
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
 
 

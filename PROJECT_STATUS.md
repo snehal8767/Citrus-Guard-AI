@@ -17,10 +17,10 @@ scikit-learn AI module, JWT auth, human-in-the-loop alert verification.
 | Phase | Name | Status |
 |---|---|---|
 | 1 | Structure & config | ✅ Complete |
-| 2 | Database, models, seed | ⬜ Not started |
-| 3 | AI/ML package | ⬜ Not started |
-| 4 | Backend API | ⬜ Not started |
-| 5 | Frontend | ⬜ Not started |
+| 2 | Database, models, seed | ✅ Complete (alembic 0001 applied, seed verified) |
+| 3 | AI/ML package | ✅ Complete (synthetic RF model trained, acc 0.855) |
+| 4 | Backend API | ✅ Complete (full demo flow verified via API) |
+| 5 | Frontend | 🟡 In progress |
 | 6 | Tests | ⬜ Not started |
 | 7 | Docs & polish | ⬜ Not started |
 

@@ -231,7 +231,7 @@ def seed(reset: bool = False) -> None:
                 area=z["area"],
                 latitude=z["latitude"],
                 longitude=z["longitude"],
-                health_status="At Risk" if z["zone_name"] == DEMO_ZONE_NAME else "Healthy",
+                health_status="Critical" if z["zone_name"] == DEMO_ZONE_NAME else "Healthy",
                 risk_score=82.0 if z["zone_name"] == DEMO_ZONE_NAME else round(rng.uniform(5, 25), 1),
             )
             db.add(zone)

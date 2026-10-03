@@ -145,9 +145,8 @@ export const api = {
 
   // --- commands ---
   runCommand: (command: string, orchardId = 1) =>
-    request<CommandResponse>("/commands", {
+    request<CommandResponse>(`/commands?orchard_id=${orchardId}`, {
       method: "POST",
       body: JSON.stringify({ command }),
-      headers: { "X-Orchard-Id": String(orchardId) },
     }),
 };
