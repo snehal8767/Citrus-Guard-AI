@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "qwtel.sqlite-viewer",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}

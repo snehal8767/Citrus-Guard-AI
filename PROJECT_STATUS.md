@@ -17,12 +17,12 @@ scikit-learn AI module, JWT auth, human-in-the-loop alert verification.
 | Phase | Name | Status |
 |---|---|---|
 | 1 | Structure & config | ✅ Complete |
-| 2 | Database, models, seed | ✅ Complete (alembic 0001 applied, seed verified) |
+| 2 | Database, models, seed | ✅ Complete (alembic 0001 applied, seed verified: 1 orchard, 8 zones, 14 scans, 112 detections) |
 | 3 | AI/ML package | ✅ Complete (synthetic RF model trained, acc 0.855) |
 | 4 | Backend API | ✅ Complete (full demo flow verified via API) |
-| 5 | Frontend | 🟡 In progress |
-| 6 | Tests | ⬜ Not started |
-| 7 | Docs & polish | ⬜ Not started |
+| 5 | Frontend | ✅ Complete (10 pages, builds clean) |
+| 6 | Tests | ✅ Complete (50 pytest + 18 vitest, all green) |
+| 7 | Docs & polish | ✅ Complete (README, RUN_LOCAL, 23 docs, CI, scripts, .vscode) |
 
 ## Key design decisions
 - Project root is this folder (`CitrusGuardAI`). No nested parent folder.
