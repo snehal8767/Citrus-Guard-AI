@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# AI model artifacts
+*.joblib
+*.pkl
+
+# Node
+node_modules/
+dist-ssr/
+.vite/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Reports generated at runtime
+reports/*.html
+reports/*.pdf
+!reports/.gitkeep
