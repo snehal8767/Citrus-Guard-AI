@@ -1,7 +1,12 @@
-"""Show the CitrusGuardAI database contents. Run from backend/:  python show_db.py"""
+"""Show the CitrusGuardAI database contents. Run from anywhere:
+    backend\\.venv\\Scripts\\python.exe backend\\show_db.py"""
+from pathlib import Path
 import sqlite3
 
-con = sqlite3.connect("data/citrusguard.db")
+# Resolve the DB from THIS file's location, never from the working directory.
+DB_PATH = Path(__file__).resolve().parent / "data" / "citrusguard.db"
+
+con = sqlite3.connect(DB_PATH)
 con.row_factory = sqlite3.Row
 
 print("=" * 60)
