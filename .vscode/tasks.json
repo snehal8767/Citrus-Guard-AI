@@ -33,6 +33,11 @@
       "command": "npm test",
       "options": { "cwd": "${workspaceFolder}/frontend" },
       "problemMatcher": []
+    },
+    {
+      "label": "start: all (backend + frontend)",
+      "dependsOn": ["backend: run", "frontend: dev"],
+      "problemMatcher": []
     }
   ]
 }

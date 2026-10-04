@@ -95,7 +95,15 @@ Capture these pages into `docs/screenshots/` for the hackathon deck:
 
 ## Quick start
 
-Windows PowerShell:
+**One command (Windows PowerShell, from the project root):**
+
+```powershell
+.\run.ps1
+```
+
+This checks the venv, `.env`, `node_modules`, and database (auto-creates it if missing), then opens backend + frontend in two windows. App: http://localhost:5173 (farmer / farmer123).
+
+Manual method (two terminals) if you prefer:
 
 ```powershell
 cd backend
