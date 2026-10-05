@@ -1,0 +1,10 @@
+# Railway deployment config for the CitrusGuardAI backend.
+# In Railway set only: Root Directory = backend, plus a /data volume
+# and the 5 env vars from the deployment guide. Everything else is automatic:
+# migrate + seed (only if empty) + train demo model, then start the API.
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "alembic upgrade head && python -m app.database.seed && python -m app.ai.train_demo_model && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+restartPolicyType = "ON_FAILURE"
