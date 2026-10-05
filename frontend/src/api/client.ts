@@ -2,6 +2,7 @@
 // live in one place. The Vite dev server proxies /api -> http://localhost:8000.
 
 import type {
+  AIAnalysisRecord,
   AIAnalysisResult,
   Alert,
   CommandResponse,
@@ -92,6 +93,7 @@ export const api = {
     fd.append("file", file);
     return request<AIAnalysisResult>("/ai/analyze", { method: "POST", body: fd });
   },
+  listAnalyses: () => request<AIAnalysisRecord[]>("/ai/analyses"),
 
   // --- sensors ---
   listSensors: (zoneId?: number) =>

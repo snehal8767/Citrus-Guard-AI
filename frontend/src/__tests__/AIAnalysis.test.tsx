@@ -4,7 +4,7 @@ import { api } from "../api/client";
 import AIAnalysis from "../pages/AIAnalysis";
 
 vi.mock("../api/client", () => ({
-  api: { analyzeImage: vi.fn() },
+  api: { analyzeImage: vi.fn(), listAnalyses: vi.fn() },
   getToken: () => "test-token",
   setToken: () => {},
 }));
@@ -14,6 +14,7 @@ const mocked = vi.mocked(api, true);
 describe("AIAnalysis", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mocked.listAnalyses.mockResolvedValue([]);
   });
 
   it("uploads, analyzes and shows condition/confidence/severity", async () => {
@@ -32,6 +33,19 @@ describe("AIAnalysis", () => {
     await waitFor(() => expect(mocked.analyzeImage).toHaveBeenCalled());
     expect(await screen.findByText("Healthy")).toBeInTheDocument();
     expect(screen.getByText("94.2%")).toBeInTheDocument();
+  });
+
+  it("lists past recorded analyses", async () => {
+    mocked.listAnalyses.mockResolvedValue([
+      {
+        id: 7, filename: "leaf.jpg", condition: "Healthy", confidence: 94.2,
+        severity: "Low", explanation: "ok", next_step: "monitor",
+        model_type: "synthetic_demo_rf", created_at: "2026-10-05T10:00:00Z",
+      },
+    ]);
+    render(<AIAnalysis />);
+    expect(await screen.findByTestId("past-analysis-7")).toBeInTheDocument();
+    expect(screen.getByText(/leaf.jpg/)).toBeInTheDocument();
   });
 
   it("shows backend errors", async () => {

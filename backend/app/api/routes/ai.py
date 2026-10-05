@@ -3,22 +3,41 @@ import io
 import os
 
 from PIL import Image
+from sqlalchemy.orm import Session
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, status
 
 from app.ai.service import get_ai_service
 from app.core.config import get_settings
 from app.api.deps import get_current_user
-from app.models import User
+from app.database.engine import get_db
+from app.models import ImageAnalysis, User
+from app.schemas.image import ImageAnalysisResponse
 
 router = APIRouter(prefix="/ai", tags=["ai"])
 
 ALLOWED_TYPES = {"jpeg", "png", "webp", "bmp"}
 
 
+@router.get("/analyses", response_model=list[ImageAnalysisResponse])
+def list_analyses(
+    limit: int = 50,
+    db: Session = Depends(get_db),
+    _: User = Depends(get_current_user),
+):
+    """List past uploaded-image analyses, newest first. Every upload is recorded."""
+    return (
+        db.query(ImageAnalysis)
+        .order_by(ImageAnalysis.created_at.desc())
+        .limit(limit)
+        .all()
+    )
+
+
 @router.post("/analyze")
 async def analyze_image(
     file: UploadFile,
+    db: Session = Depends(get_db),
     _: User = Depends(get_current_user),
 ):
     """Upload an image and run the real preprocessing + classifier pipeline."""
@@ -59,5 +78,20 @@ async def analyze_image(
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
+    # Record EVERY upload analysis in the database so all images are traceable.
+    record = ImageAnalysis(
+        filename=safe_name,
+        condition=result["condition"],
+        confidence=result["confidence"],
+        severity=result["severity"],
+        explanation=result.get("explanation"),
+        next_step=result.get("next_step"),
+        model_type=result.get("model_type", "synthetic_demo_rf"),
+    )
+    db.add(record)
+    db.commit()
+    db.refresh(record)
+
+    result["id"] = record.id
     result["filename"] = safe_name
     return result

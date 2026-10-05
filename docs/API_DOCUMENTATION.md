@@ -19,7 +19,8 @@ Interactive docs: **http://localhost:8000/docs** (Swagger) and `/redoc`.
 | GET/POST | /zones | yes | List (filter `orchard_id`) / create (full CRUD with PUT/DELETE /{id}) |
 | GET/POST | /scans | yes | List / run full scan transaction |
 | GET | /scans/{id} | yes | Scan with detections |
-| POST | /ai/analyze | yes | Image upload → condition/confidence/severity/explanation/next step |
+| POST | /ai/analyze | yes | Image upload → condition/confidence/severity/explanation/next step (recorded in DB) |
+| GET | /ai/analyses | yes | Past upload analyses, newest first |
 | GET | /sensors | yes | Readings (filter `zone_id`, `limit`) |
 | GET | /sensors/status | yes | Latest per-zone + Normal/Warning/Critical |
 | GET | /alerts | yes | List (filter `status`) |

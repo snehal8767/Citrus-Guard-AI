@@ -1,6 +1,7 @@
 """SQLAlchemy models package."""
 from app.models.alert import Alert, FarmerVerification
 from app.models.history import HistoricalMonitoring
+from app.models.image_analysis import ImageAnalysis
 from app.models.intervention import Intervention
 from app.models.orchard import Orchard, OrchardZone
 from app.models.scan import AIDetection, Scan
@@ -12,6 +13,7 @@ __all__ = [
     "FarmerVerification",
     "HistoricalMonitoring",
     "Intervention",
+    "ImageAnalysis",
     "Orchard",
     "OrchardZone",
     "AIDetection",

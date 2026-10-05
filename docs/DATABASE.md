@@ -14,6 +14,7 @@ SQLite (`backend/data/citrusguard.db`, path from `DATABASE_URL` in `.env`). Fore
 | ai_detections | Per-zone AI output | scan FK, zone FK, condition, confidence, severity, explanation |
 | sensor_readings | IoT snapshots | zone FK, soil_moisture, temperature, humidity, leaf_wetness, irrigation_status |
 | alerts | Risk alerts | zone FK, alert_type, severity, risk_score, message, status |
+| image_analyses | Uploaded-image results | filename, condition, confidence, severity, explanation, next step |
 | farmer_verifications | Human decisions | alert FK, decision (verify/reject/rescan), comment |
 | interventions | Precision plans | zone FK, type, target_area, status, reason |
 | historical_monitoring | Trend source | orchard/zone/scan FKs, health_score, risk_score, affected_area |

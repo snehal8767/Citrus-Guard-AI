@@ -131,6 +131,7 @@ export interface CommandResponse {
 }
 
 export interface AIAnalysisResult {
+  id?: number;
   condition: string;
   confidence: number;
   severity: string;
@@ -138,4 +139,16 @@ export interface AIAnalysisResult {
   next_step: string;
   model_type: string;
   filename?: string;
+}
+
+export interface AIAnalysisRecord {
+  id: number;
+  filename: string;
+  condition: string;
+  confidence: number;
+  severity: string;
+  explanation: string | null;
+  next_step: string | null;
+  model_type: string;
+  created_at: string;
 }

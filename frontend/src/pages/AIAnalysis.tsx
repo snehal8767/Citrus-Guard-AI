@@ -1,9 +1,12 @@
 // AI Image Analysis page: upload -> preview -> analyze -> results.
+// Every analysis is saved to the database; past analyses are listed below.
 import { useState } from "react";
 import { api } from "../api/client";
 import type { AIAnalysisResult } from "../types";
 import { PageHeader, StatusBadge } from "../components/ui";
-import { formatNumber } from "../utils/helpers";
+import { EmptyState, ErrorAlert, LoadingSpinner } from "../components/ui";
+import { useApi } from "../hooks/useApi";
+import { formatDateTime, formatNumber } from "../utils/helpers";
 
 export default function AIAnalysis() {
   const [file, setFile] = useState<File | null>(null);
@@ -11,6 +14,7 @@ export default function AIAnalysis() {
   const [result, setResult] = useState<AIAnalysisResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const past = useApi(() => api.listAnalyses());
 
   const onFile = (f: File | undefined) => {
     setResult(null);
@@ -31,6 +35,7 @@ export default function AIAnalysis() {
     try {
       const res = await api.analyzeImage(file);
       setResult(res);
+      past.refresh(); // new analysis is now recorded — reload the history list
     } catch (e) {
       setError(e instanceof Error ? e.message : "Analysis failed");
     } finally {
@@ -72,6 +77,31 @@ export default function AIAnalysis() {
             </dl>
           )}
         </div>
+      </div>
+
+      <div className="card mt-6">
+        <div className="section-title">Past analyses (recorded in database)</div>
+        <p className="mt-1 text-xs text-gray-500">Every uploaded image is saved with its result. Newest first.</p>
+        {past.loading ? (
+          <LoadingSpinner />
+        ) : past.error ? (
+          <ErrorAlert message={past.error} onRetry={past.refresh} />
+        ) : !past.data || past.data.length === 0 ? (
+          <div className="mt-3"><EmptyState message="No analyses yet. Upload an image above." /></div>
+        ) : (
+          <ul className="mt-3 max-h-72 space-y-2 overflow-y-auto text-sm">
+            {past.data.slice(0, 20).map((a) => (
+              <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-leaf-50 px-3 py-2" data-testid={`past-analysis-${a.id}`}>
+                <span className="font-medium">#{a.id} · {a.filename}</span>
+                <span>{a.condition} · {formatNumber(a.confidence)}%</span>
+                <span className="flex items-center gap-2">
+                  <StatusBadge status={a.severity} />
+                  <span className="text-xs text-gray-400">{formatDateTime(a.created_at)}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
