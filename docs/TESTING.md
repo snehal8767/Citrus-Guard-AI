@@ -1,6 +1,6 @@
 # Testing
 
-## Backend — pytest (50 tests, all passing)
+## Backend — pytest (53 tests, all passing)
 
 Run from the project root: `backend\.venv\Scripts\python.exe -m pytest tests -q`
 
@@ -17,7 +17,7 @@ Run from the project root: `backend\.venv\Scripts\python.exe -m pytest tests -q`
 
 Tests use an isolated SQLite file (`backend/data/test_citrusguard.db`) with per-test wipe + reseed. Notable bugs caught: CHECK firing at flush, SQLite FK pragma off, severity-95 vs 100 max-risk math.
 
-## Frontend — Vitest + React Testing Library (18 tests, all passing)
+## Frontend — Vitest + React Testing Library (19 tests, all passing)
 
 Run from `frontend/`: `npm test`. Plus `npm run build` (tsc + vite) verified clean.
 

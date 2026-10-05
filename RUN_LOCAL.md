@@ -71,7 +71,7 @@ backend\.venv\Scripts\python.exe -m pytest tests -q
 ```
 
 ```powershell
-# Frontend: 18 tests + production build
+# Frontend: 19 tests + production build
 cd C:\Users\sneha\OneDrive\Desktop\CitrusGuardAI\frontend
 npm test
 npm run build

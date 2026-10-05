@@ -171,7 +171,7 @@ curl -X POST "http://localhost:8000/commands?orchard_id=1" -H "Content-Type: app
 
 ## Project workflow
 
-Phases 1–7 in [PROJECT_STATUS.md](PROJECT_STATUS.md): structure → database → AI → API → frontend → tests → docs. Each phase was run, verified, and committed before moving on. Tests: `pytest tests` (50 backend tests) + `npm test` in `frontend/` (18 tests).
+Phases 1–7 in [PROJECT_STATUS.md](PROJECT_STATUS.md): structure → database → AI → API → frontend → tests → docs. Each phase was run, verified, and committed before moving on. Tests: `pytest tests` (53 backend tests) + `npm test` in `frontend/` (19 tests).
 
 ## Troubleshooting
 

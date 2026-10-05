@@ -12,6 +12,6 @@
 | 3:15 | Intervention page → create plan | "6.25 acres treated, not 50. Server refuses unverified zones — I can show the 400." |
 | 3:45 | Command Console: `show zone B risk` | "Rule-based console, not an LLM — same services, text interface." |
 | 4:15 | Reports → download | "Full audit trail as HTML. History page has every scan and decision." |
-| 4:45 | If asked: show `/docs` | "Twelve routers, JWT auth, 50 backend + 18 frontend tests green." |
+| 4:45 | If asked: show `/docs` | "Twelve routers, JWT auth, 53 backend + 19 frontend tests green." |
 
 **Backup lines:** "Model trained on synthetic data — the Predictor interface lets a field model drop in." / "No pesticide dosage anywhere, by design." / "Reset and re-run gives the identical story."
