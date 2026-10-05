@@ -12,14 +12,14 @@ from app.models import AIDetection, Alert, HistoricalMonitoring, OrchardZone
 
 STEPS = [
     "Step 1: Inspect affected trees and confirm the suspected condition.",
-    "Step 2: If confirmed, consult your local agricultural advisory for approved treatment options.",
+    "Step 2: If confirmed, consult the recommended agricultural treatment/advisory.",
     "Step 3: Generate a targeted intervention map for the affected area only.",
     "Step 4: Apply the approved treatment only to the verified affected zone.",
     "Step 5: Re-scan the zone after intervention to confirm recovery.",
 ]
 
 SAFETY_NOTE = (
-    "Important: this system does not prescribe pesticides, doses, or chemicals. "
+    "This website does not automatically prescribe a pesticide, dose, or chemical. "
     "Always follow licensed agricultural advice and local regulations."
 )
 

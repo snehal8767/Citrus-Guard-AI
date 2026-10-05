@@ -133,7 +133,8 @@ export default function Interventions() {
               ))}
             </ol>
             <div className="mt-3 rounded-lg bg-yellow-50 p-3 text-xs text-yellow-800">
-              ⚠️ {recommendation.data.safety_note}
+              <div className="font-bold">Important ⚠️</div>
+              <div className="mt-1">{recommendation.data.safety_note}</div>
             </div>
           </div>
         ) : (
