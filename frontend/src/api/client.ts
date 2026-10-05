@@ -18,7 +18,10 @@ import type {
   Zone,
   ZoneRecommendation,
 } from "../types";
-const BASE = "/api";
+// In dev, Vite proxies /api -> http://localhost:8000 (see vite.config.ts).
+// In production (e.g. Vercel), set VITE_API_URL to the deployed backend,
+// e.g. https://citrusguard-api.onrender.com
+const BASE = import.meta.env.VITE_API_URL ?? "/api";
 
 let authToken: string | null = localStorage.getItem("cg_token");
 
