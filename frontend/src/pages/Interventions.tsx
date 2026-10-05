@@ -17,7 +17,7 @@ export default function Interventions() {
   const alerts = useApi(() => api.listAlerts());
   const interventions = useApi(() => api.listInterventions());
   const [zoneId, setZoneId] = useState(2);
-  const [itype, setItype] = useState(TYPES[0]);
+  const recommendation = useApi(() => api.getRecommendation(zoneId), [zoneId]);  const [itype, setItype] = useState(TYPES[0]);
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -108,6 +108,37 @@ export default function Interventions() {
             </ul>
           )}
         </div>
+      </div>
+
+      <div className="card mt-6" data-testid="recommendation-card">
+        <div className="section-title">Zone recommendation</div>
+        {recommendation.loading ? (
+          <LoadingSpinner />
+        ) : recommendation.error ? (
+          <ErrorAlert message={recommendation.error} onRetry={recommendation.refresh} />
+        ) : recommendation.data ? (
+          <div className="mt-2 text-sm">
+            <div className="text-lg font-bold text-leaf-900">
+              Zone {recommendation.data.zone_name} — {recommendation.data.health_status}
+            </div>
+            <dl className="mt-2 space-y-1">
+              <div className="flex gap-2"><dt className="text-gray-500">Detected condition:</dt><dd className="font-medium">{recommendation.data.condition}</dd></div>
+              <div className="flex gap-2"><dt className="text-gray-500">Risk:</dt><dd className="font-medium">{formatNumber(recommendation.data.risk)}/100</dd></div>
+              <div className="flex gap-2"><dt className="text-gray-500">Affected area:</dt><dd className="font-medium">{formatNumber(recommendation.data.affected_area, 2)} acres</dd></div>
+            </dl>
+            <div className="mt-3 font-bold text-leaf-900">Recommended action</div>
+            <ol className="mt-1 space-y-1">
+              {recommendation.data.steps.map((s) => (
+                <li key={s} className="rounded-lg bg-leaf-50 px-3 py-1.5">{s}</li>
+              ))}
+            </ol>
+            <div className="mt-3 rounded-lg bg-yellow-50 p-3 text-xs text-yellow-800">
+              ⚠️ {recommendation.data.safety_note}
+            </div>
+          </div>
+        ) : (
+          <EmptyState message="Select a zone to see its recommendation." />
+        )}
       </div>
     </div>
   );

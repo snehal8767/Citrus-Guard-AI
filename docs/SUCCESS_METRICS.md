@@ -8,7 +8,7 @@ How to tell the demo (and later a pilot) is working. All demo targets below were
 - [x] Zone B values exact: "Possible Citrus Disease Stress", 91%, High, 82/100
 - [x] Every dashboard number from the database (no hardcoded KPIs — grep-verified)
 - [x] Invalid upload, invalid transition, and unverified intervention all rejected with clear errors
-- [x] 53 backend + 19 frontend tests green; `npm run build` clean
+- [x] 57 backend + 20 frontend tests green; `npm run build` clean
 
 ## Pilot success (future field deployment — illustrative)
 

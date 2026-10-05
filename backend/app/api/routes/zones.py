@@ -6,6 +6,8 @@ from app.api.deps import get_current_user
 from app.database.engine import get_db
 from app.models import OrchardZone, User
 from app.schemas.orchard import ZoneCreate, ZoneResponse, ZoneUpdate
+from app.schemas.recommendation import RecommendationResponse
+from app.services import recommendation as recommendation_service
 
 router = APIRouter(prefix="/zones", tags=["zones"])
 
@@ -31,6 +33,19 @@ def create_zone(
     db.commit()
     db.refresh(zone)
     return zone
+
+
+@router.get("/{zone_id}/recommendation", response_model=RecommendationResponse)
+def get_recommendation(
+    zone_id: int,
+    db: Session = Depends(get_db),
+    _: User = Depends(get_current_user),
+):
+    """Structured dosage-free action plan for a zone (condition, risk, area, steps)."""
+    try:
+        return recommendation_service.build_recommendation(db, zone_id)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
 
 
 @router.get("/{zone_id}", response_model=ZoneResponse)

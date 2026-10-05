@@ -152,3 +152,20 @@ export interface AIAnalysisRecord {
   model_type: string;
   created_at: string;
 }
+
+export interface ZoneRecommendation {
+  zone_id: number;
+  zone_name: string;
+  health_status: string;
+  risk_score: number;
+  area: number;
+  condition: string;
+  severity: string;
+  risk: number;
+  affected_area: number;
+  alert_id: number | null;
+  alert_status: string | null;
+  verified_alert: boolean;
+  steps: string[];
+  safety_note: string;
+}

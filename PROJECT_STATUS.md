@@ -21,7 +21,7 @@ scikit-learn AI module, JWT auth, human-in-the-loop alert verification.
 | 3 | AI/ML package | ✅ Complete (synthetic RF model trained, acc 0.855) |
 | 4 | Backend API | ✅ Complete (full demo flow verified via API) |
 | 5 | Frontend | ✅ Complete (10 pages, builds clean) |
-| 6 | Tests | ✅ Complete (53 pytest + 19 vitest, all green) |
+| 6 | Tests | ✅ Complete (57 pytest + 20 vitest, all green) |
 | 7 | Docs & polish | ✅ Complete (README, RUN_LOCAL, 23 docs, CI, scripts, .vscode) |
 
 ## Key design decisions

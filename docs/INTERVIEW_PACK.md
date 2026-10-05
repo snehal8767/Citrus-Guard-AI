@@ -22,7 +22,7 @@ Late, blanket, unrecorded crop-stress response on large Vidarbha orange orchards
 - **SQLAlchemy+SQLite+Alembic:** relational integrity with zero ops.
 - **sklearn+OpenCV:** explainable classical ML; honest about being synthetic.
 - **JWT+bcrypt:** auth without an identity provider.
-- **pytest+Vitest:** 72 tests, all green.
+- **pytest+Vitest:** 77 tests, all green.
 
 ## Architecture (30 seconds)
 
@@ -64,7 +64,7 @@ Bcrypt hashes, JWT expiry, Bearer on all but login/health, upload type+size vali
 - Designed transparent risk engine (weighted 0–100 + factor breakdown) with banded health states.
 - Enforced human-in-the-loop: server-side alert state machine; interventions require Verified alerts (400-tested).
 - Shipped Leaflet GIS with 8 health-coloured zones, sensor fusion, and per-zone detail panels.
-- Wrote 72 tests (pytest 53, Vitest 19) + CI; deterministic seeded demo reproducible after reset.
+- Wrote 77 tests (pytest 57, Vitest 20) + CI; deterministic seeded demo reproducible after reset.
 - Built rule-based command console mapping text to real services (explicitly not an LLM).
 - Documented honestly: REAL-vs-SIMULATED matrix, validation roadmap, no accuracy claims.
 
@@ -78,4 +78,4 @@ Bcrypt hashes, JWT expiry, Bearer on all but login/health, upload type+size vali
 
 ## 2-minute explanation
 
-"Vidarbha's orange farmers walk fifty acres to spot disease, then spray everything. I built CitrusGuardAI to close that loop per zone: a scan transaction that detects stress, scores risk transparently, and raises an alert; the farmer verifies on their phone; only then can a precision plan target the six affected acres instead of fifty. The stack is React and FastAPI with SQLite, an OpenCV plus scikit-learn pipeline behind a swappable interface, Leaflet maps, and a rule-based command console. Everything is tested — fifty-three backend and nineteen frontend tests — and the demo resets deterministically. I'm explicit about limits: synthetic model, simulated drone, prototype risk formula, no dosage advice. The architecture is ready for the real thing: field data retrains the model through the same interface, sensors replace the simulator, and verification taps become training labels."
+"Vidarbha's orange farmers walk fifty acres to spot disease, then spray everything. I built CitrusGuardAI to close that loop per zone: a scan transaction that detects stress, scores risk transparently, and raises an alert; the farmer verifies on their phone; only then can a precision plan target the six affected acres instead of fifty. The stack is React and FastAPI with SQLite, an OpenCV plus scikit-learn pipeline behind a swappable interface, Leaflet maps, and a rule-based command console. Everything is tested — fifty-seven backend and twenty frontend tests — and the demo resets deterministically. I'm explicit about limits: synthetic model, simulated drone, prototype risk formula, no dosage advice. The architecture is ready for the real thing: field data retrains the model through the same interface, sensors replace the simulator, and verification taps become training labels."

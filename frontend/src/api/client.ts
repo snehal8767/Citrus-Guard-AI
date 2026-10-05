@@ -16,8 +16,8 @@ import type {
   SensorReading,
   SensorStatus,
   Zone,
+  ZoneRecommendation,
 } from "../types";
-
 const BASE = "/api";
 
 let authToken: string | null = localStorage.getItem("cg_token");
@@ -75,6 +75,8 @@ export const api = {
   getOrchard: (id: number) => request<OrchardDetail>(`/orchards/${id}`),
 
   // --- zones ---
+  getRecommendation: (zoneId: number) =>
+    request<ZoneRecommendation>(`/zones/${zoneId}/recommendation`),
   listZones: (orchardId?: number) =>
     request<Zone[]>(`/zones${orchardId ? `?orchard_id=${orchardId}` : ""}`),
 

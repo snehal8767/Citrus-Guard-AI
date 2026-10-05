@@ -17,6 +17,7 @@ Interactive docs: **http://localhost:8000/docs** (Swagger) and `/redoc`.
 | GET/POST | /orchards | yes | List / create (full CRUD with PUT/DELETE /{id}) |
 | GET | /orchards/{id} | yes | Orchard with zones |
 | GET/POST | /zones | yes | List (filter `orchard_id`) / create (full CRUD with PUT/DELETE /{id}) |
+| GET | /zones/{id}/recommendation | yes | Structured dosage-free action plan (condition, risk, area, 5 steps) |
 | GET/POST | /scans | yes | List / run full scan transaction |
 | GET | /scans/{id} | yes | Scan with detections |
 | POST | /ai/analyze | yes | Image upload → condition/confidence/severity/explanation/next step (recorded in DB) |
