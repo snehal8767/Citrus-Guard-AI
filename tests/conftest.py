@@ -17,6 +17,9 @@ UPLOAD_DIR = os.path.join(BACKEND_DIR, "data", "uploads")
 # Must be set BEFORE any app import (engine/settings read env at import time).
 os.environ["DATABASE_URL"] = f"sqlite:///{TEST_DB}"
 os.environ["UPLOAD_DIR"] = UPLOAD_DIR
+# The startup bootstrap (alembic/seed/train) is done by fixtures here, not
+# by the app's lifespan hook — keep tests fast and isolated.
+os.environ["AUTO_BOOTSTRAP"] = "false"
 
 import pytest
 from fastapi.testclient import TestClient
